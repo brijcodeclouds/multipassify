@@ -11,7 +11,7 @@ More details on Multipass with Shopify can be found [here](http://docs.shopify.c
 
 ## Installation
 <pre>
-    npm install multipassify
+    npm install brijcodeclouds/multipassify
 </pre>
 
 ## Usage
@@ -23,16 +23,13 @@ Make sure "Accounts are required" or "Accounts are optional" is selected and Mul
   var Multipassify = require('multipassify');
 
   // Construct the Multipassify encoder
-  var multipassify = new Multipassify("SHOPIFY MULTIPASS SECRET");
+  const multipassify = new Multipassify("SHOPIFY MULTIPASS SECRET");
 
   // Create your customer data hash
-  var customerData = { email: 'test@example.com', remote_ip:'USERS IP ADDRESS', return_to:"http://some.url"};
+  const customerData = { email: 'test@example.com'}
 
   // Encode a Multipass token
-  var token = multipassify.encode(customerData);
+  multipassify.encode(customerData);
 
-  // Generate a Shopify multipass URL to your shop
-  var url = multipassify.generateUrl(customerData, "yourstorename.myshopify.com");
-
-  // Generates a URL like:  https://yourstorename.myshopify.com/account/login/multipass/<MULTIPASS-TOKEN>
-```
+// Generate a Shopify multipass token, returns the multipasstoken which can be used with Shopify's storefront Graph QL to generate the customer access token https://shopify.dev/docs/storefront-api/reference/customers/customeraccesstokencreatewithmultipass
+const multiPasstoken = multipassify.generateMultipassToken(customerData); 
